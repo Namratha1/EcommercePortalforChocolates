@@ -2,7 +2,7 @@
 
  For this assignment, you will create an online store web site that features products from a fictional company, Bertha's Deluxe Chocolates. This company produces fine chocolates and confections for sale over the Internet. You will create the online store front for the company that allows customers to browse the various product offerings, and purchase products online. Your site must feature a shopping cart that allows customers to add or remove items. Additionally, you may create for extra credit (details below) a report page for management that shows all orders placed, ordered by date.
 
-Your main page (/~jadrnxxx/proj4/index.html) must include the following:
+Your main page must include the following:
 
     Links: Home, Products, Order Online, About Us, Contact.
     Home: Brings the user back to the main page.
@@ -23,24 +23,7 @@ The products should be organized by categories:
 The database
 
 The available products for sale are in a read-only table named products in database proj4 on opatija.sdsu.edu. You will query this table to populate the items in your web site.
-
-Here's how to connect to the database with Perl:
-
-
-my $host = "opatija.sdsu.edu";
-my $port = "3306";
-my $database = "proj4";
-my $username = "jadrnXXX";
-my $password = "apple";
-my $database_source = "dbi:mysql:$database:$host:$port";
-
-	
-my $dbh = DBI->connect($database_source, $username, $password) 
-or die 'Cannot connect to db';
-
-Note that you have limited privileges on the products table. The only command you can execute on this table is SELECT. Make all connections to the proj4 database using YOUR account, not jadrn000.
-
-You will need to store sales information to produce the reports. This information should be stored in your database on opatija.
+This information should be stored in your database on opatija.
 
 The fields in table products are:
 
@@ -98,5 +81,3 @@ Additional Details
 Once the order is submitted, the customer should receive a confirmation that includes details of the order, including tax, shipping charges and a total, as well as the address where the order is to be shipped. Do not print credit card numbers to screen *ever*. You may let the customer know which card was used by showing only the last four digits, preceded by X's. ie XXXX XXXX XXXX 3281. In other words, look at commercial applications and compare your efforts with them. Your project should look and feel like a "real" application, and should be as user friendly as possible. This is an important metric for determining your project grade.
 Sales Report.
 For extra credit (15%) prepare a sales report that shows total sales and profit for each product sold, ordered by SKU, with a grand total for gross sales and profit at the bottom. Your report should be available at the following URL:
-
-http://jadran.sdsu.edu/perl/jadrnxxx/report.cgi
