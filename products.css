@@ -1,0 +1,105 @@
+/*
+      Mandya Subramanya, Namratha
+      Class account - jadrn034
+      Project #4
+      Fall 2017
+*/
+  .navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+  
+  body {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  }  
+
+  footer {
+    background-color: #f2f2f2;
+    padding: 15px;
+  }
+    
+  .carousel-inner img {
+      width: 100%;
+      margin: auto;
+      min-height:200px;
+  }
+
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; 
+    }
+  }
+
+  .container, #content {
+    padding-top : 50px;
+    padding-bottom: 50px;
+  }
+
+  form {
+    border-top-style: solid;
+    padding-top: 100px;
+  }
+
+#cart table {
+    margin-left: auto;
+    margin-right: auto;
+    }    
+    
+#cart th, td {
+    background-color: white;
+    padding: 5px 20px 5px 20px;
+    }
+    
+#counter {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-weight: normal;
+    font-size: 80%;
+    }            
+
+.cartbutton {
+  margin-right: 5px;
+}
+
+.col-sm-4, .col-sm-6 {
+    position: relative;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%)
+}
+
+.col-sm-4:hover .image, .col-sm-6:hover .image{
+  opacity: 0.3;
+}
+
+.col-sm-4:hover .middle, .col-sm-6:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+ 
+#coll {
+  padding-top: 60px;
+}

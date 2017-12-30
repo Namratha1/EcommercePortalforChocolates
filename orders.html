@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!--
+      Mandya Subramanya, Namratha
+      Class account - jadrn034
+      Project #4
+      Fall 2017
+  -->
+<html lang="en">
+<head>
+  <title>Order Online - Bertha's Deluxe Chocolates</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://use.fontawesome.com/93377041ba.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jadran.sdsu.edu/~jadrn034/proj4/CSS/orders.css"/>
+  <script type="text/javascript" src="/jquery/jquery.js"></script>
+  <script type="text/javascript" src="http://jadran.sdsu.edu/~jadrn034/proj4/JS/ajax_get_lib.js"></script>
+  <script type="text/javascript" src="http://jadran.sdsu.edu/~jadrn034/proj4/JS/shopping_cart.js"></script>
+  <script type="text/javascript" src="http://jadran.sdsu.edu/~jadrn034/proj4/JS/orderform.js"></script>
+  <script type="text/javascript" src="http://jadran.sdsu.edu/~jadrn034/proj4/JS/ajax_populate_page.js"></script>
+</head>
+<body class="order-page" style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="http://jadran.sdsu.edu/~jadrn034/proj4/index.html">Bertha's Chocolate Deluxe</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://jadran.sdsu.edu/~jadrn034/proj4/index.html">Home</a></li>
+        <li><a href="http://jadran.sdsu.edu/~jadrn034/proj4/pages/products.html">Products</a></li>
+        <li class="active"><a href="http://jadran.sdsu.edu/~jadrn034/proj4/pages/orders.html">Order Online</a></li>
+        <li><a href="http://jadran.sdsu.edu/~jadrn034/proj4/pages/aboutus.html">About Us</a></li>
+        <li><a href="http://jadran.sdsu.edu/~jadrn034/proj4/pages/contact.html">Contact</a></li>
+        <li><a href="http://jadran.sdsu.edu/perl/jadrn034/report.cgi">Report</a></li>
+      </ul>
+    </div> 
+  </div>
+</nav>
+
+<div class="container">
+    <div id="cart" style="display: block;"> &nbsp; </div>
+    <form id="orderform" method="post" action="/perl/jadrn034/proj4/read_cookie.cgi" style="display:none;">
+      <div class='alert alert-danger fade-in' style="display: none;"> &nbsp; </div>
+      <h2>Shipping Address</h2>
+      <div class="form-row">
+        <div class="form-group col-md-6 mb-3">
+          <label>First name<span class="red">*</span></label>
+          <input type="text" class="form-control" id="shippingfirstname" name="shippingfirstname" placeholder="First name">
+        </div>
+        <div class="form-group col-md-6 mb-3">
+          <label>Last name<span class="red">*</span></label>
+          <input type="text" class="form-control" id="shippinglastname" name="shippinglastname" placeholder="Last name">
+        </div>
+        <div class="form-group col-md-8 mb-3">
+          <label>Address<span class="red">*</span></label>
+          <input type="text" class="form-control" id="shippingaddress1" name="shippingaddress1" placeholder="1234 Main St">
+        </div>
+        <div class="form-group col-md-4 mb-3">
+          <label>Address 2</label>
+          <input type="text" class="form-control" id="shippingaddress2" name="shippingaddress2" placeholder="Apartment No">
+        </div>
+        <div class="form-group col-md-3 mb-3">
+          <label>City<span class="red">*</span></label>
+          <input type="text" class="form-control" id="shippingcity" name="shippingcity" placeholder="City">
+        </div>
+        <div class="form-group col-md-3 mb-3">
+          <label>State<span class="red">*</span></label>
+          <input type="text" class="form-control" id="shippingstate" name="shippingstate" placeholder="State" maxlength="2">
+        </div>
+        <div class="form-group col-md-3 mb-3">
+          <label>Zip<span class="red">*</span></label>
+          <input type="text" class="form-control" id="shippingzip" name="shippingzip" placeholder="Zip" maxlength="5">
+        </div>
+        <div class="form-group col-md-3 mb-3">
+          <label>Phone number<span class="red">*</span></label>
+          <input type="text" class="form-control" id="shippingphone" name="shippingphone" placeholder="Phone number" maxlength="10">
+        </div>
+        <div>
+          <label class="radio-inline">
+            <input type="radio" name="shippingequalsbilling" onchange="copyshippingtobilling();">Select checkbox if Billing Address is same as Shipping Address
+          </label>
+        </div>
+      </div>
+      <h2>Billing Address</h2>
+      <div class="form-row">
+        <div class="form-group col-md-6 mb-3">
+          <label>First name<span class="red">*</span></label>
+          <input type="text" class="form-control" id="billingfirstname" name="billingfirstname" placeholder="First name">
+        </div>
+        <div class="form-group col-md-6 mb-3">
+          <label>Last name<span class="red">*</span></label>
+          <input type="text" class="form-control" id="billinglastname" name="billinglastname" placeholder="Last name">
+        </div>
+        <div class="form-group col-md-8 mb-3">
+          <label>Address<span class="red">*</span></label>
+          <input type="text" class="form-control" id="billingaddress1" name="billingaddress1" placeholder="1234 Main St">
+        </div>
+        <div class="form-group col-md-4 mb-3">
+          <label>Address 2</label>
+          <input type="text" class="form-control" id="billingaddress2" name="billingaddress2" placeholder="Apartment No">
+        </div>
+        <div class="form-group col-md-3 mb-3">
+          <label>City<span class="red">*</span></label>
+          <input type="text" class="form-control" id="billingcity" name="billingcity" placeholder="City">
+        </div>
+        <div class="form-group col-md-3 mb-3">
+          <label>State<span class="red">*</span></label>
+          <input type="text" class="form-control" id="billingstate" name="billingstate" placeholder="State" maxlength="2">
+        </div>
+        <div class="form-group col-md-3 mb-3">
+          <label>Zip<span class="red">*</span></label>
+          <input type="text" class="form-control" id="billingzip" name="billingzip" placeholder="Zip" maxlength="5">
+        </div>
+        <div class="form-group col-md-3 mb-3">
+          <label>Phone number<span class="red">*</span></label>
+          <input type="text" class="form-control" id="billingphone" name="billingphone" placeholder="Phone number" maxlength="10">
+        </div>
+      </div>
+      <h2>Payment</h2>
+      <div class="form-row">
+        <label class="radio-inline">
+          <input type="radio" name="optradio" id="paymenttype1" required>Visa
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio" id="paymenttype2">MasterCard
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio" id="paymenttype3">Discover
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio" id="paymenttype4">American Express
+        </label>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6 mb-3">
+          <label>Name on Card<span class="red">*</span></label>
+          <input type="text" class="form-control" id="cardname" name="cardname">
+        </div>
+        <div class="form-group col-md-6 mb-3">
+          <label>Card number<span class="red">*</span></label>
+            <input type="text" class="form-control" id="cardnumber" placeholder="XXXXXXXXXXXXXXXX" name="cardnumber" maxlength="16">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-2 mb-3">
+          <label>Expiry Month<span class="red">*</span></label>
+          <input type="text" class="form-control" id="expirymonth" placeholder="MM" name="expirymonth" maxlength="2">
+        </div>
+        <div class="form-group col-md-2 mb-3">
+          <label>Expiry Year<span class="red">*</span></label>
+          <input type="text" class="form-control" id="expiryyear" placeholder="YYYY" name="expiryyear" maxlength="4">
+        </div>
+        <div class="form-group col-md-2 mb-3">
+          <label>CVV<span class="red">*</span></label>
+          <input type="text" class="form-control" id="cvv" name="cvv" placeholder="XXX" maxlength="3">
+        </div>
+      </div>
+      </div>
+      <div class="form-row" id="btngrp">
+        <button id="submitButton" class="btn btn-primary" style="display: none;">Submit</button>
+        <button type="reset" id="resetButton" class="btn btn-primary" style="display: none;">Reset</button>
+      </div>
+    </form>
+</div>
+<div id="confirmation" style="display:none;">
+      <h1>Hi! Thank you for shopping with us.</h1>
+      <h2>Your order has been confirmed.</h2>
+      <h4>Your order will be delivered in 6-9 business days</h4>
+    </div>
+<br/>
+<br/>
+<br/>
+<footer class="container-fluid text-center navbar-fixed-bottom">
+  <p>Bertha's Deluxe Chocolates. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

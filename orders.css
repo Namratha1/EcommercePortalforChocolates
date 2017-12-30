@@ -1,0 +1,44 @@
+/*
+      Mandya Subramanya, Namratha
+      Class account - jadrn034
+      Project #4
+      Fall 2017
+*/
+
+  .navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+  
+  footer {
+    background-color: #f2f2f2;
+    padding: 15px;
+  }
+    
+  .carousel-inner img {
+      width: 100%; 
+      margin: auto;
+      min-height:200px;
+  }
+
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; 
+    }
+  }
+
+  #cart {
+    padding-top: 50px;
+  }
+
+  .red{
+    color: red;
+  }
+
+  body {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  }
+
+  #btngrp {
+    margin-left: 85px;
+  }

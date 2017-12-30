@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+      Mandya Subramanya, Namratha
+      Class account - jadrn034
+      Project #4
+      Fall 2017
+  -->
+<html lang="en">
+<head>
+  <title>Products - Bertha's Deluxe Chocolates</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://use.fontawesome.com/93377041ba.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jadran.sdsu.edu/~jadrn034/proj4/CSS/products.css"/>
+  <script type="text/javascript" src="/jquery/jquery.js"></script>
+  <script type="text/javascript" src="http://jadran.sdsu.edu/~jadrn034/proj4/JS/ajax_get_lib.js"></script>
+  <script type="text/javascript" src="http://jadran.sdsu.edu/~jadrn034/proj4/JS/ajax_populate_page.js"></script>
+  <script type="text/javascript" src="http://jadran.sdsu.edu/~jadrn034/proj4/JS/shopping_cart.js"></script>
+</head>
+<body>
+<div>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="http://jadran.sdsu.edu/~jadrn034/proj4/index.html">Bertha's Chocolate Deluxe</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="http://jadran.sdsu.edu/~jadrn034/proj4/index.html">Home</a></li>
+          <li class="active"><a href="pages/products.html">Products</a></li>
+          <li><a href="http://jadran.sdsu.edu/~jadrn034/proj4/pages/orders.html">Order Online</a></li>
+          <li><a href="http://jadran.sdsu.edu/~jadrn034/proj4/pages/aboutus.html">About Us</a></li>
+          <li><a href="http://jadran.sdsu.edu/~jadrn034/proj4/pages/contact.html">Contact</a></li>
+          <li><a href="http://jadran.sdsu.edu/perl/jadrn034/report.cgi">Report</a></li>
+        </ul>
+      </div> 
+    </div>
+  </nav>
+  <nav>
+    <div class="collapse navbar-collapse" id="coll">
+      <div class="navbar-header">
+        <button id="prodbutton" style="display:none;" class="btn btn-default"> Back to Products</button>
+      </div>
+      <div class="nav navbar-nav navbar-right">
+        <button class="btn btn-default" onclick="orderpage();">Cart:  <i class="fa fa-shopping-cart" id="count"><span class="red"> &nbsp; &nbsp; &nbsp; </span></i></button>
+      </div>
+    </div>
+  </nav>
+</div>
+ <div class="container">
+  <h1>Our Products</h1>
+  <div class="row">
+    <div class="col-sm-4">
+      <img src="http://jadran.sdsu.edu/~jadrn034/proj4/Images/image7.jpg" alt="Avatar" class="image">
+      <div class="middle">
+        <button type="button" class="btn btn-light btn-lg" id="milk" onclick="display_milk_chocolate()">Milk Chocolates</button>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <img src="http://jadran.sdsu.edu/~jadrn034/proj4/Images/image8.jpg" alt="Avatar" class="image">
+      <div class="middle">
+        <button type="button" class="btn btn-light btn-lg" id="dark">Dark Chocolates</button>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <img src="http://jadran.sdsu.edu/~jadrn034/proj4/Images/image9.jpg" alt="Avatar" class="image">
+      <div class="middle">
+        <button type="button" class="btn btn-light btn-lg" id="nuts">Nuts and Chews</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <img src="http://jadran.sdsu.edu/~jadrn034/proj4/Images/image19.jpg" alt="Avatar" class="image">
+      <div class="middle">
+        <button type="button" class="btn btn-light btn-lg" id="brittle">Brittles and Toffies</button>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <img src="http://jadran.sdsu.edu/~jadrn034/proj4/Images/image15.jpg" alt="Avatar" class="image">
+      <div class="middle">
+        <button type="button" class="btn btn-light btn-lg" id="truffles">Truffles</button>
+      </div>
+    </div>
+</div> 
+<div class="row">
+  <div class="col-sm-6">
+    <img src="http://jadran.sdsu.edu/~jadrn034/proj4/Images/image23.jpg" alt="Avatar" class="image">
+    <div class="middle">
+      <button type="button" class="btn btn-light btn-lg" id="gifts">Gifts</button>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <img src="http://jadran.sdsu.edu/~jadrn034/proj4/Images/image24.jpg" alt="Avatar" class="image">
+    <div class="middle">
+      <button type="button" class="btn btn-light btn-lg" id="holiday">Holiday Assortments</button>
+    </div>
+  </div>
+</div>
+<hr />
+</div>
+<div id="content" class="contentdata" style="display: block;">
+</div>
+<div>
+    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Added to cart!</h4>
+        </div>
+        <div class="modal-body">
+          &nbsp;
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" onclick="redirecttocheckout();">Checkout</button>
+        </div>
+      </div>
+      
+    </div>
+    </div>
+</div>
+
+
+<footer class="container-fluid text-center navbar-fixed-bottom">
+  <p>Bertha's Deluxe Chocolates. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
